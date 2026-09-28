@@ -1,0 +1,61 @@
+{
+  "manifest_version": 3,
+  "name": "Lectern",
+  "version": "0.1.0",
+  "description": "Pull the audio, the slides, or a combined video out of a Panopto lecture recording.",
+  "minimum_chrome_version": "116",
+
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "downloads",
+    "offscreen",
+    "storage"
+  ],
+
+  "optional_host_permissions": ["https://*/*"],
+
+  "host_permissions": [
+    "https://*.panopto.com/*",
+    "https://*.panopto.eu/*",
+    "https://*.panopto.com.au/*",
+    "https://*.cloudfront.net/*"
+  ],
+
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+
+  "action": {
+    "default_title": "Lectern",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.panopto.com/Panopto/Pages/Viewer.aspx*",
+        "https://*.panopto.eu/Panopto/Pages/Viewer.aspx*",
+        "https://*.panopto.com.au/Panopto/Pages/Viewer.aspx*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+
+  "web_accessible_resources": []
+}

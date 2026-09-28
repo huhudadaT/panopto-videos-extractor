@@ -1,0 +1,135 @@
+{
+  "Delivery": {
+    "Duration": 3375.065,
+    "IsPrimaryAudioOnly": true,
+    "IsPodcastEncodeComplete": true,
+    "IsAudioPodcastEncodeComplete": true,
+    "HasCaptions": false,
+    "PublicID": "c2a88244-c557-44fd-9220-b4b3015c4b89",
+    "SessionPublicID": "5a7b5bfd-1894-4470-a6f0-b4b3015c4b85",
+    "SessionFileId": "5a7b5bfd-1894-4470-a6f0-b4b3015c4b85",
+    "SessionName": "Thursday, August 27, 2026 at 5:07:11 PM",
+    "SessionGroupLongName": "2271_BIOENG_1310_SEC1025",
+    "OwnerDisplayName": "Kang Kim",
+    "Contributors": [
+      {
+        "DisplayName": "Kang Kim",
+        "UserKey": "unified\\KANGKIM"
+      }
+    ],
+    "EventTargets": [],
+    "PodcastStreams": [
+      {
+        "PublicID": "2c38b1a1-cb8b-45e8-aeb1-b4b3016c38df",
+        "StreamFileId": "2c38b1a1-cb8b-45e8-aeb1-b4b3016c38df",
+        "StreamHttpUrl": null,
+        "StreamUrl": "https://d2y36twrtb17ty.cloudfront.net:443/sessions/5a7b5bfd-1894-4470-a6f0-b4b3015c4b85/c2a88244-c557-44fd-9220-b4b3015c4b89-2c38b1a1-cb8b-45e8-aeb1-b4b3016c38df.mp4?InvocationID=7c525e26-20b8-f111-829d-12b1cb861383&tid=00000000-0000-0000-0000-000000000000&StreamID=2c38b1a1-cb8b-45e8-aeb1-b4b3016c38df&ServerName=pitt.hosted.panopto.com",
+        "RelativeStart": 0,
+        "RelativeEnd": 3375.065,
+        "Tag": "",
+        "Variants": null,
+        "ViewerMediaFileType": 3,
+        "ViewerMediaFileTypeName": "mp4"
+      }
+    ],
+    "Streams": [
+      {
+        "PublicID": "2569b29c-f470-4749-88d9-b4b3015c496f",
+        "StreamFileId": "2569b29c-f470-4749-88d9-b4b3015c496f",
+        "StreamHttpUrl": "https://d2y36twrtb17ty.cloudfront.net:443/sessions/5a7b5bfd-1894-4470-a6f0-b4b3015c4b85/c2a88244-c557-44fd-9220-b4b3015c4b89-f7260fa5-c565-4234-8591-b4b3016c2234.hls/master.m3u8?InvocationID=7c525e26-20b8-f111-829d-12b1cb861383&tid=00000000-0000-0000-0000-000000000000&StreamID=2569b29c-f470-4749-88d9-b4b3015c496f&ServerName=pitt.hosted.panopto.com",
+        "StreamUrl": "https://d2y36twrtb17ty.cloudfront.net:443/sessions/5a7b5bfd-1894-4470-a6f0-b4b3015c4b85/c2a88244-c557-44fd-9220-b4b3015c4b89-f7260fa5-c565-4234-8591-b4b3016c2234.hls/master.m3u8?InvocationID=7c525e26-20b8-f111-829d-12b1cb861383&tid=00000000-0000-0000-0000-000000000000&StreamID=2569b29c-f470-4749-88d9-b4b3015c496f&ServerName=pitt.hosted.panopto.com",
+        "RelativeStart": 0,
+        "RelativeEnd": 3375.065,
+        "Tag": "AUDIO",
+        "Variants": [
+          {
+            "Bandwidth": 105954,
+            "Url": "https://d2y36twrtb17ty.cloudfront.net/sessions/5a7b5bfd-1894-4470-a6f0-b4b3015c4b85/c2a88244-c557-44fd-9220-b4b3015c4b89-f7260fa5-c565-4234-8591-b4b3016c2234.hls/96003/index.m3u8"
+          }
+        ],
+        "ViewerMediaFileType": 11,
+        "ViewerMediaFileTypeName": "hls"
+      }
+    ],
+    "Timestamps": [
+      {
+        "AbsoluteTime": 13432338485.41949,
+        "Caption": "Resistor configurations",
+        "Data": "Slide body text for Resistor configurations",
+        "Duration": 77.92399999999999,
+        "EventTargetType": "PowerPoint",
+        "ID": 221993871,
+        "ObjectIdentifier": "348813026",
+        "ObjectPublicIdentifier": "e755e98e-85f7-4353-b625-b4b3015c49d2",
+        "ObjectSequenceNumber": "65537",
+        "ShowInTableOfContents": true,
+        "Time": 0.0
+      },
+      {
+        "AbsoluteTime": 13432338563.418837,
+        "Caption": "Common Node Common Node",
+        "Data": "Slide body text for Common Node Common Node",
+        "Duration": 5.587,
+        "EventTargetType": "PowerPoint",
+        "ID": 221993872,
+        "ObjectIdentifier": "348813026",
+        "ObjectPublicIdentifier": "e755e98e-85f7-4353-b625-b4b3015c49d2",
+        "ObjectSequenceNumber": "131073",
+        "ShowInTableOfContents": true,
+        "Time": 77.92399999999999
+      },
+      {
+        "AbsoluteTime": 13432338569.005758,
+        "Caption": "Equivalent Resistance: Series elements",
+        "Data": "Slide body text for Equivalent Resistance: Series elements",
+        "Duration": 140.815,
+        "EventTargetType": "PowerPoint",
+        "ID": 221993873,
+        "ObjectIdentifier": "348813026",
+        "ObjectPublicIdentifier": "e755e98e-85f7-4353-b625-b4b3015c49d2",
+        "ObjectSequenceNumber": "196610",
+        "ShowInTableOfContents": true,
+        "Time": 83.511
+      },
+      {
+        "AbsoluteTime": 13432338709.821396,
+        "Caption": "Equivalent circuits with series resistors",
+        "Data": "Slide body text for Equivalent circuits with series resistors",
+        "Duration": 60.692,
+        "EventTargetType": "PowerPoint",
+        "ID": 221993874,
+        "ObjectIdentifier": "348813026",
+        "ObjectPublicIdentifier": "e755e98e-85f7-4353-b625-b4b3015c49d2",
+        "ObjectSequenceNumber": "262147",
+        "ShowInTableOfContents": true,
+        "Time": 224.326
+      },
+      {
+        "AbsoluteTime": 13432338770.512676,
+        "Caption": "",
+        "Data": "Slide body text for ",
+        "Duration": 49.501,
+        "EventTargetType": "PowerPoint",
+        "ID": 221993875,
+        "ObjectIdentifier": "348813026",
+        "ObjectPublicIdentifier": "e755e98e-85f7-4353-b625-b4b3015c49d2",
+        "ObjectSequenceNumber": "327683",
+        "ShowInTableOfContents": true,
+        "Time": 285.018
+      },
+      {
+        "AbsoluteTime": 13432338820.013737,
+        "Caption": "Parallel Resistors",
+        "Data": "Slide body text for Parallel Resistors",
+        "Duration": 62.193999999999996,
+        "EventTargetType": "PowerPoint",
+        "ID": 221993876,
+        "ObjectIdentifier": "348813026",
+        "ObjectPublicIdentifier": "e755e98e-85f7-4353-b625-b4b3015c49d2",
+        "ObjectSequenceNumber": "393220",
+        "ShowInTableOfContents": true,
+        "Time": 334.519
+      }
+    ]
+  }
+}

@@ -1,0 +1,139 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    name: Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Run the test suite
+        run: node tests/run.mjs
+
+      - name: Syntax-check every module
+        run: |
+          failed=0
+          while IFS= read -r file; do
+            if ! node --check "$file"; then
+              echo "::error file=$file::syntax error"
+              failed=1
+            fi
+          done < <(find extension -name '*.js')
+          exit $failed
+
+      - name: Validate the manifest
+        run: |
+          node -e '
+            const fs = require("node:fs");
+            const manifest = JSON.parse(fs.readFileSync("extension/manifest.json", "utf8"));
+
+            if (manifest.manifest_version !== 3) {
+              throw new Error("expected manifest_version 3");
+            }
+            if (!/^\d+\.\d+\.\d+$/.test(manifest.version)) {
+              throw new Error(`version is not x.y.z: ${manifest.version}`);
+            }
+
+            // Every file the manifest points at must exist.
+            const referenced = [
+              manifest.background.service_worker,
+              manifest.action.default_popup,
+              ...Object.values(manifest.action.default_icon),
+              ...Object.values(manifest.icons),
+              ...manifest.content_scripts.flatMap((entry) => entry.js),
+            ];
+            for (const file of referenced) {
+              if (!fs.existsSync(`extension/${file}`)) {
+                throw new Error(`manifest references a missing file: ${file}`);
+              }
+            }
+
+            console.log(`manifest ok — ${manifest.name} ${manifest.version}`);
+          '
+
+      - name: Check every local import resolves
+        run: |
+          node -e '
+            const fs = require("node:fs");
+            const path = require("node:path");
+
+            const files = [];
+            (function walk(dir) {
+              for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+                const full = path.join(dir, entry.name);
+                if (entry.isDirectory()) walk(full);
+                else if (entry.name.endsWith(".js")) files.push(full);
+              }
+            })("extension");
+
+            let broken = 0;
+            for (const file of files) {
+              const source = fs.readFileSync(file, "utf8");
+              const pattern = /(?:from|import)\s+["'\''](\.[^"'\'']+)["'\'']/g;
+              let match;
+              while ((match = pattern.exec(source))) {
+                const target = path.resolve(path.dirname(file), match[1]);
+                if (!fs.existsSync(target)) {
+                  console.error(`${file}: cannot resolve ${match[1]}`);
+                  broken += 1;
+                }
+              }
+            }
+            if (broken) throw new Error(`${broken} unresolved import(s)`);
+            console.log(`all imports resolve across ${files.length} files`);
+          '
+
+  package:
+    name: Package
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Confirm the tag matches the manifest version
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          tag="${GITHUB_REF_NAME#v}"
+          manifest=$(node -p "require('./extension/manifest.json').version")
+          if [ "$tag" != "$manifest" ]; then
+            echo "::error::tag $GITHUB_REF_NAME does not match manifest version $manifest"
+            exit 1
+          fi
+          echo "tag and manifest agree on $manifest"
+
+      - name: Build the extension zip
+        run: |
+          version=$(node -p "require('./extension/manifest.json').version")
+          cd extension
+          zip -r "../lectern-${version}.zip" . -x '*.DS_Store'
+          cd ..
+          unzip -tq "lectern-${version}.zip"
+          echo "ZIP_NAME=lectern-${version}.zip" >> "$GITHUB_ENV"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.ZIP_NAME }}
+          path: ${{ env.ZIP_NAME }}
+          if-no-files-found: error
+
+      - name: Publish the release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ env.ZIP_NAME }}
+          generate_release_notes: true

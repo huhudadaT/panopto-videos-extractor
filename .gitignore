@@ -1,0 +1,26 @@
+# Build artefacts
+*.zip
+dist/
+build/
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node — there are no dependencies, but keep these out if one appears
+node_modules/
+package-lock.json
+
+# Local scratch: captures and downloaded lectures should never be committed
+captures/
+scratch/
+*.m4a
+*.mp4
+*.webm
+*.ts
+!tests/fixtures/*

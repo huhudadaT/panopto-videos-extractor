@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="popup.css" />
+    <title>Lectern</title>
+  </head>
+  <body>
+    <header class="bar">
+      <div class="mark" aria-hidden="true"></div>
+      <div class="bar-text">
+        <h1>Lectern</h1>
+        <p class="meta" id="session-kind">Reading the page…</p>
+      </div>
+    </header>
+
+    <main>
+      <section class="session" id="session" hidden>
+        <h2 id="session-name"></h2>
+        <p class="meta" id="session-detail"></p>
+      </section>
+
+      <section class="notice" id="notice" hidden>
+        <p id="notice-text"></p>
+        <button class="link" id="notice-action" type="button" hidden></button>
+      </section>
+
+      <form id="controls" hidden>
+        <fieldset>
+          <legend>Extract</legend>
+          <div class="modes" id="modes" role="radiogroup" aria-label="What to extract"></div>
+        </fieldset>
+
+        <fieldset id="video-options">
+          <legend>Video</legend>
+          <label class="row">
+            <span>Size</span>
+            <select id="video-height">
+              <option value="1080">1080p</option>
+              <option value="720" selected>720p</option>
+              <option value="540">540p</option>
+            </select>
+          </label>
+          <label class="row">
+            <span>Encoder</span>
+            <select id="encoder">
+              <option value="fast" selected>Fast</option>
+              <option value="compatible">Compatible</option>
+            </select>
+          </label>
+          <label class="row check">
+            <input type="checkbox" id="burn-captions" />
+            <span>Show slide titles</span>
+          </label>
+        </fieldset>
+
+        <fieldset id="slide-options">
+          <legend>Slides</legend>
+          <label class="row">
+            <span>Resolution</span>
+            <select id="slide-size">
+              <option value="full" selected>Full</option>
+              <option value="thumb">Thumbnail</option>
+            </select>
+          </label>
+        </fieldset>
+      </form>
+
+      <section class="progress" id="progress" hidden>
+        <div class="progress-head">
+          <span id="stage-label">Working</span>
+          <span class="meta" id="stage-count"></span>
+        </div>
+        <div class="track"><div class="fill" id="fill"></div></div>
+      </section>
+
+      <section class="result" id="result" hidden>
+        <p id="result-text"></p>
+      </section>
+    </main>
+
+    <footer>
+      <button class="ghost" id="log-toggle" type="button" hidden>Log</button>
+      <button class="primary" id="go" type="button" disabled>Start</button>
+      <button class="danger" id="cancel" type="button" hidden>Cancel</button>
+    </footer>
+
+    <pre class="log" id="log" hidden></pre>
+
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

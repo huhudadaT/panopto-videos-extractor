@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Lectern worker</title>
+  </head>
+  <body>
+    <!--
+      This page is never shown. It exists because an MV3 service worker cannot
+      create blob URLs, has no Web Audio, and gets terminated mid-download. A
+      document can do all three, and an open offscreen document keeps the
+      service worker alive for the duration of the job.
+    -->
+    <script type="module" src="offscreen.js"></script>
+  </body>
+</html>
